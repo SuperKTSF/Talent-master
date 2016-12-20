@@ -1,0 +1,32 @@
+<div auth class="wrapper-md" ng-controller="BannerCtrl">
+<div auth class="panel panel-default">
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+  <div class="col wrapper-lg">
+    <div class="row row-sm">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4"  ng-repeat= "item in banners">
+        <div class="item" style="text-align: center;">
+          
+          <div>
+            <input type="text" class="name{{item.id}}" value="{{item.url}}" style="padding:2px;text-align:center;height:35px;border:none;background-color:transparent" oninput="nameChange(this)"/>          
+          </div>
+          <div style="padding-bottom: 15px"> 
+              <button class="btn btn-sm btn-default" id="deleBt{{item.id}}" ng-click="deleBanner('{{item.id}}')">删除</button> 
+              <button class="btn btn-sm btn-success" id="saveBt{{item.id}}" style="display: none;" ng-click="saveBanner('{{item.id}}')">保存</button>         
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- right col -->
+  <div class="col w-md bg-light dker b-l no-border-xs">    
+    <div class="wrapper-md">      
+      <div class="m-b-sm text-md">分类操作</div>
+
+      <button class="btn btn-lm btn-danger" ng-click="addBanner()">添加横幅</button>
+    </div>
+  </div>
+  <!-- / right col -->
+</div>
+</div>
+</div>

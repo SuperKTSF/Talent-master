@@ -1,0 +1,107 @@
+<div auth class="wrapper-md" ng-controller="ServicetochenkCtrl">
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        服务待审核 总数{{totalItems}}
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped v-middle">
+            <thead>
+                <tr>
+                    <th>服务名</th>
+                    <th>达人姓名</th>
+                    <th>达人电话</th>
+                    <th>价格</th>
+                    <th>买家姓名</th>
+                    <th>买家电话</th>
+                    <th>状态</th>
+                    <th>相应的时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody class="no-padder">
+              <tr ng-repeat ="service in services">
+                <td class="v-middle">{{service.less_name}}</td>
+                <td class="v-middle">{{service.mast_name}}</td>
+                <td class="v-middle">{{service.mast_phone}}</td>
+                <td class="v-middle">{{service.less_price / 100}}</td>
+                <td class="v-middle">{{service.name}}</td>
+                <td class="v-middle">{{service.phone}}</td>
+                <td class="v-middle">{{transState(service.state)}}</td>
+                <td class="v-middle">{{showRightTime(service)}}</td>
+                <td class="v-middle" style="width:120px">
+                  <button class="btn btn-success btn-sm" ng-click="changeInfoBtn({{service.id}})">操作</button>&nbsp
+                  <button class="btn btn-warning btn-sm" ng-click="refuseService({{service.id}})">拒绝</button>
+                </td>
+              </tr>                      
+            </tbody>
+        </table>
+        
+        <div style="margin: 5px 10px;">     
+        <pagination total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" max-size="maxSize" class="pagination-sm m-t-sm m-b" boundary-links="true" ng-click="paginationClick()"></pagination>
+        </div>
+
+    </div>
+  </div>
+
+  <!-- aside right -->
+  <div class="app-aside-right pos-fix padder w-auto-xs bg-white b-l animated fadeInRight hide" id="infoChangePage" style="width: 310px;height:420px;border: 1px solid #7266ba;">
+    <div class=" center" >
+      <div class="wrapper b-b b-t b-light m-b">
+        <div class="pull-right text-muted text-md" ui-toggle-class="show" target=".app-aside-right" ng-click="closeInfoChangePage()"><i class="icon-close"></i></div>
+        时间详情
+      </div>
+      <form class="form-horizontal" method="get">
+        <div class="form-group has-success" style="display: none;">
+          <label class="col-sm-3 control-label">ID</label>
+          <div class="col-sm-7">
+            <input type="text" disabled id="info-change-id" class="form-control">
+          </div>
+        </div>
+        <div class="form-group has-success">
+          <label class="col-sm-3 control-label">待确认</label>
+          <div class="col-sm-7">
+            <input type="text" disabled id="info-change-time" class="form-control">
+          </div>
+        </div>
+        <div class="form-group has-success">
+          <label class="col-sm-3 control-label">已预约</label>
+          <div class="col-sm-7">
+            <input type="text" disabled id="info-change-confirm_time" class="form-control">
+          </div>
+        </div>
+        <div class="form-group has-success">
+          <label class="col-sm-3 control-label">已付款</label>
+          <div class="col-sm-7">
+            <input type="text" disabled id="info-change-pay_time" class="form-control">
+          </div>
+        </div>
+        <div class="form-group has-success">
+          <label class="col-sm-3 control-label">已完成</label>
+          <div class="col-sm-7">
+            <input type="text" disabled id="info-change-finish_time" class="form-control">
+          </div>
+        </div>
+        <div class="form-group has-success">
+          <label class="col-sm-3 control-label">退款</label>
+          <div class="col-sm-7">
+            <input type="text" disabled id="info-change-refund_time" class="form-control">
+          </div>
+        </div>
+        <div class="form-group has-success">
+          <label class="col-sm-3 control-label">取消</label>
+          <div class="col-sm-7">
+            <input type="text" disabled id="info-change-cancel_time" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10 col-sm-offset-2">
+            <button ng-click="closeInfoChangePage()" class="btn btn-default">Cancel</button>
+            <button ng-click="saveInfoChangePage()" class="btn btn-primary">保存修改</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- /aside right -->
+</div>
