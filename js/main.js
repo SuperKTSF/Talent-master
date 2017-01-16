@@ -13,8 +13,8 @@ angular.module('app')
       $scope.app = {
         name: '达人荟',
         version: '1.0',
-        //url: 'http://127.0.0.1:8080',
-        url: 'http://testapi.idarenhui.com:4097',
+        url: 'http://127.0.0.1:63342',
+        //url: 'http://testapi.idarenhui.com:4097',
         //url: 'https://api.idarenhui.com',
         // for chart colors
         color: {
