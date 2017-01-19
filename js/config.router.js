@@ -5,7 +5,7 @@
  */
 angular.module('app')
     .run(
-    ['$rootScope', '$state', '$stateParams', '$templateCache',
+    ['$rootScope', '$state', '$stateParams', '$templateCache',                //方便获得当前状态的方法，绑定到根作用域
       function ($rootScope, $state, $stateParams, $templateCache) {
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;
@@ -13,22 +13,22 @@ angular.module('app')
     ]
     )
     .config(
-    ['$stateProvider', '$urlRouterProvider',
+    ['$stateProvider', '$urlRouterProvider',           //配置文件和提供者进行对服务的配置
       function ($stateProvider, $urlRouterProvider) {
-                $urlRouterProvider.otherwise('/access/signin'); 
-                $stateProvider
-                .state('app', {
+                $urlRouterProvider.otherwise('/access/signin'); //路由重定向$urlRouterProvider,使用的默认登录界面
+                $stateProvider                        //使用第三方模块Angular-UI Router，不使用路由，而是使用状态
+                .state('app', {            //状态配置，用于状态转换
                     abstract: true,
-                    url: '/app',
+                    url: '/app',     //hash部分的URL
                     templateUrl: 'tpl/app.html',
-                    resolve: {
+                    resolve: {             //用来处理异步数据调用
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['js/controllers/header.js']);
                         }]
                     }
                 })
                 
-                .state('app.user', {
+                .state('app.user', {             //Children Router
                     url: '/user',
                     templateUrl: 'tpl/app/user/user.html',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {

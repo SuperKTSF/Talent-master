@@ -1,7 +1,7 @@
 app.controller('userCtrl', ['$scope', '$http', 'toaster', '$cookies', 
-    function ($scope, $http, toaster, $cookies) {
+    function ($scope, $http, toaster, $cookies) {           //$cookies需要先导入angular-cookies.js和模块angular.module("app",['ngCookies']);
 
-    var user_token = $cookies.user_token;
+    var user_token = $cookies.user_token;             //使用格式：$cookies.变量名 = 变量值,存取少量的的数据，直接在客户端存储用户信息的能力
     var url = $scope.app.url;
     $scope.currentPage = 1;
     $scope.maxSize = 10;
@@ -16,7 +16,7 @@ app.controller('userCtrl', ['$scope', '$http', 'toaster', '$cookies',
     $scope.users = [];
 
     //请求用户数据
-    $scope.search = function (type) {
+    $scope.search = function (type) {                 //点搜索按钮应该执行的方法
         //判断时间
         if(!startEndTimeRight($scope.startTime, $scope.endTime)){
             return 0;
@@ -35,20 +35,20 @@ app.controller('userCtrl', ['$scope', '$http', 'toaster', '$cookies',
         params += "&page=" + $scope.currentPage;
         $http({
                 "method": "get",
-                "url": url + "/v1.0/admin/users?" + params,
+                "url": "api/user.json?" + params,          //加载数据的目录,可以在本地存储用户的数据,使用相对路径
                 "headers": {
                     "access_token": user_token
                 }
             }).success(function (json) {
                 $scope.status = "加载完成";
                 $scope.users = json.users;
-                $scope.totalItems = json.pagination.total_rows;
+               // $scope.totalItems = json.pagination.total_rows;      //目前本地文件中还不包含total_rows信息
             })
             .error(function () {
                 toaster.pop("warning", "加载出错!", "", 1500);
             });
-    }
-    $scope.search(0);
+    };
+    $scope.search(0);   //会自动执行加载页面
 
     //搜索框回车响应
     $scope.enterKeyPress = function(event){
@@ -90,7 +90,7 @@ app.controller('userCtrl', ['$scope', '$http', 'toaster', '$cookies',
         $.ajax({
             "type": "put",
             "dataType": "json",
-            "url": url + "/v1.0/admin/users/" + $("#info-change-id").val(),
+            "url":  "/api/user.json" + $("#info-change-id").val(),          //又出现了v1.0文件夹，本来绝对路径要加上url
             "data": JSON.stringify(data),
             "headers": {"access_token": user_token},
             "success": function (data, info) {

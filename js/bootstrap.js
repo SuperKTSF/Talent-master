@@ -196,7 +196,8 @@ if (typeof jQuery === 'undefined') {
 
   Button.DEFAULTS = {
     loadingText: 'loading...'
-  }
+  };
+
 
   Button.prototype.setState = function (state) {
     var d    = 'disabled'
