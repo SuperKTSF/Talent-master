@@ -8,7 +8,6 @@ app.controller('userCtrl', ['$scope', '$http', 'toaster', '$cookies',
     $scope.itemsPerPage = 20;
     $scope.totalItems = 300;
     $scope.status = "加载中";
-
     $scope.stateSelected = 'all';
     $scope.startTime = "";
     $scope.endTime = "";

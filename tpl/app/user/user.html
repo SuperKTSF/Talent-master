@@ -16,7 +16,7 @@
         </div>
         <div style="display: inline-block;margin:0px 5px;">
             <label class="control-label">时间</label>
-            <input type="text" ng-model="startTime" placeholder="例2015-01-12 00:00:00" class="input-sm form-control w-sm inline v-middle"/>
+            <input type="text" ng-model="startTime" placeholder="例2015-01-12 00:00:00" class="input-sm form-control w-sm inline v-middle "/>
         </div>
         <div style="display: inline-block;margin:0px 5px;">
             <label class="control-label">-</label>
@@ -49,7 +49,7 @@
             <tbody class="no-padder">
               <tr ng-repeat ="user in users">
                 <td style="display: none">{{user.id}}</td>
-                <td><img src="{{user.image}}" style="width:33px;height:33px;border-radius:20%;margin: -4px 0px;" ></td> <!-- onerror="this.src='img/a0.jpg'"-->
+                <td><img src="{{user.image}}" style="width:33px;height:33px;border-radius:20%;margin: -4px 0px;" onerror="this.src='img/a0.jpg'"></td> <!-- onerror="this.src='img/a0.jpg'"-->
                 <td class="v-middle">{{user.name}}</td>
                 <td class="v-middle">{{user.nickname}}</td>
                 <td class="v-middle">{{user.sex}}</td>

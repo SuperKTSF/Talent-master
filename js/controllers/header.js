@@ -6,7 +6,7 @@ app.controller('HeaderController', ['$scope', '$http', '$state','$cookies',
         $scope.adminName = "管理员";
         $http({
           method: "get",
-          url:$scope.app.url + '/v1.0/user',
+          url:  'api/manager',                                  //$scope.app.url + '/api/user',
           headers:{Access_token:$cookies.user_token}
         })
         .success(function (json) {

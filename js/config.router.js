@@ -21,7 +21,7 @@ angular.module('app')
                     abstract: true,
                     url: '/app',     //hash部分的URL
                     templateUrl: 'tpl/app.html',
-                    resolve: {             //用来处理异步数据调用
+                    resolve: {             //用来处理异步数据调用                 //一般路由跳转的界面都会对应各自的控制器
                         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                             return $ocLazyLoad.load(['js/controllers/header.js']);
                         }]
@@ -138,15 +138,6 @@ angular.module('app')
                                     return $ocLazyLoad.load(['js/app/banner/banner.js']);
                             }]
                         }
-                }).state('app.personal', {
-                    url: '/personal',
-                    templateUrl: 'tpl/app/personal/personal.html',
-                    resolve: {
-                        deps: ['$ocLazyLoad',
-                            function ($ocLazyLoad) {
-                                return $ocLazyLoad.load(['js/app/personal/personal.js']);
-                            }]
-                    }
                 })
 ////////////////////////////////////////////////////////////////////////////////////////////                
                 .state('access', {

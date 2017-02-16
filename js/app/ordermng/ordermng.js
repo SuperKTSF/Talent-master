@@ -39,14 +39,14 @@ app.controller('OrderCtrl', ["$scope", "$cookies", 'toaster', '$http',
         params += "&page=" + $scope.currentPage;
         $http({
                 "method": "get",
-                "url": url + "/v1.0/admin/orders?" + params,
+                "url": "api/orders.json?" + params,                       //网站所有的信息全部都保存在本地文件中，所有的$http请求都是相对路径       // "url": url + "/v1.0/admin/orders?" + params,
                 "headers": {
                     "access_token": user_token
                 }
             }).success(function (json) {
                 $scope.status = "加载完成";
                 $scope.orders = json.orders;
-                $scope.totalItems = json.pagination.total_rows;
+               // $scope.totalItems = json.pagination.total_rows;
             })
             .error(function () {
                 toaster.pop("warning", "加载出错!", "", 1500);
